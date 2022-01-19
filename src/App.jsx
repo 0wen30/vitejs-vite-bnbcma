@@ -1,45 +1,23 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import Info from './components/Info';
+import Details from './components/Details';
+import Input from './components/Input';
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [operaciones, setOperaciones] = useState([
+    { tipo: 'ingreso', monto: 500 },
+    { tipo: 'egreso', monto: 200 },
+    { tipo: 'ingreso', monto: 50 },
+    { tipo: 'egreso', monto: 20 },
+  ]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+    <>
+      <Info operaciones={operaciones} />
+      <Input setOperaciones={setOperaciones} operaciones={operaciones} />
+      <Details operaciones={operaciones} />
+    </>
+  );
 }
 
-export default App
+export default App;
